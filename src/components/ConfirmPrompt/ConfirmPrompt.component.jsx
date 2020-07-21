@@ -28,7 +28,6 @@ const ConfirmPrompt = ({
         <Button
             title="no"
             handleClick={handleCancel}
-            showLoader={isLoading}
             disabled={isLoading}
             dataTestId={`${dataTestId}-no`}
         />
