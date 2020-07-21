@@ -171,24 +171,16 @@ const Homepage = ({
   );
 };
 
-Homepage.propTypes = {
-  getCategoryItems: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  getCategoryItemsSuccess: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string.isRequired,
-  categoryItems: PropTypes.object.isRequired,
-  dataTestId: PropTypes.string,
-};
-
 Homepage.defaultProps = {
   dataTestId: 'viewcategoryitems',
 };
 
 Homepage.propTypes = {
+  getCategoryItems: PropTypes.func.isRequired,
   dataTestId: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   isDeleteLoading: PropTypes.bool.isRequired,
-  getCategoryItemsSuccess: PropTypes.func.isRequired,
+  getCategoryItemsSuccess: PropTypes.bool.isRequired,
   deleteItem: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
   categoryItems: PropTypes.object.isRequired,
