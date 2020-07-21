@@ -1,0 +1,25 @@
+@import '../../partials/colors';
+
+.confirm-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .confirm-title {
+    text-align: center;
+  }
+  .confirm-content {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin: 40px;
+    padding: 40px;
+    background-color: $white;
+  }
+  .button-container {
+    display: flex;
+  }
+  .deleteButton {
+    background-color: $red;
+    color: $white;
+  }
+}

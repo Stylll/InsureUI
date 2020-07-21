@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmPrompt Test should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="confirm-container"
+    >
+      <div
+        class="confirm-content"
+      >
+        <div>
+          <p
+            class="confirm-title"
+          >
+            Are you sure you want to perform this operation?
+          </p>
+        </div>
+        <div
+          class="button-container"
+        >
+          <div
+            class="btn-button"
+          >
+            <button
+              class="button deleteButton"
+              data-testid="confirmprompt-yes"
+              type="submit"
+            >
+              yes
+            </button>
+          </div>
+          <div
+            class="btn-button"
+          >
+            <button
+              class="button "
+              data-testid="confirmprompt-no"
+              type="submit"
+            >
+              no
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

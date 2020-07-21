@@ -1,21 +1,51 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../../components/Header/Header.component';
 import Loader from '../../components/Loader/Loader.component';
+import Modal from '../../components/Modal/Modal.component';
+import ConfirmPrompt from '../../components/ConfirmPrompt/ConfirmPrompt.component';
 import * as categoryActions from '../../redux/actionCreators/categoryActions/categoryActions';
+import * as itemActions from '../../redux/actionCreators/itemActions/itemActions';
 import './styles.scss';
 
 const Homepage = ({
-  categoryItems, getCategoryItems, isLoading,
+  categoryItems, getCategoryItems, isLoading, isDeleteLoading, deleteItem,
+  dataTestId,
 }) => {
+  const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
+  const [itemToDeleteId, setItemToDeleteId] = useState(null);
+  const [isDeletingItem, setIsDeletingItem] = useState(false);
+
   useEffect(() => {
     getCategoryItems();
   }, [getCategoryItems]);
 
+  useEffect(() => {
+    if (!isDeleteLoading && isDeletingItem) {
+      hideDeleteItem();
+    }
+  }, [isDeleteLoading, isDeletingItem]);
+
   const loaderStyles = {
     width: '20px',
     height: '20px',
+  };
+
+  const showDeleteItem = (itemId) => {
+    setItemToDeleteId(itemId);
+    setShowDeleteItemModal(true);
+  };
+
+  const hideDeleteItem = () => {
+    setItemToDeleteId(null);
+    setShowDeleteItemModal(false);
+    setIsDeletingItem(false);
+  };
+
+  const handleDeleteItem = () => {
+    deleteItem(itemToDeleteId);
+    setIsDeletingItem(true);
   };
 
   const renderCategoryItems = (categoryList) => {
@@ -35,7 +65,10 @@ const Homepage = ({
             <td>{sn}</td>
             <td>{item.name}</td>
             <td>${item.value}</td>
-            <td>X</td>
+            <td className="deleteBtn"
+              onClick={() => { showDeleteItem(item.id); }}
+              data-testid={`${dataTestId}-delete-${sn}`}
+            >&times;</td>
           </tr>
         );
       })
@@ -124,6 +157,16 @@ const Homepage = ({
           {!isLoading && renderTable()}
         </div>
       </div>
+      <Modal isModalVisible={showDeleteItemModal}
+        handleModalClose={hideDeleteItem}
+      >
+        <ConfirmPrompt
+          handleCancel={hideDeleteItem}
+          handleClick={handleDeleteItem}
+          message="Are sure you want to delete this item?"
+          isLoading={isDeleteLoading}
+          />
+      </Modal>
     </div>
   );
 };
@@ -141,8 +184,23 @@ Homepage.defaultProps = {
   dataTestId: 'viewcategoryitems',
 };
 
-const mapStateToProps = ({ category }) => ({
+Homepage.propTypes = {
+  dataTestId: PropTypes.string,
+  isLoading: PropTypes.bool.isRequired,
+  isDeleteLoading: PropTypes.bool.isRequired,
+  getCategoryItemsSuccess: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  categoryItems: PropTypes.object.isRequired,
+};
+
+Homepage.defaultProps = {
+  dataTestId: 'homepage',
+};
+
+const mapStateToProps = ({ category, item }) => ({
   isLoading: category.isCategoryItemsLoading,
+  isDeleteLoading: item.isDeleteLoading,
   getCategoryItemsSuccess: category.getCategoryItemsSuccess,
   errorMessage: category.getCategoryItemsErrorMessage,
   categoryItems: category.categoryItems,
@@ -150,6 +208,7 @@ const mapStateToProps = ({ category }) => ({
 
 const mapDispatchToProps = {
   getCategoryItems: categoryActions.getCategoryItems,
+  deleteItem: itemActions.deleteItem,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

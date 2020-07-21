@@ -6,4 +6,8 @@ export default class ItemsApi {
   static createItem(requestBody) {
     return axios.post(`${baseUrl}/items`, requestBody);
   }
+
+  static deleteItem(id) {
+    return axios.delete(`${baseUrl}/items/${id}`);
+  }
 }

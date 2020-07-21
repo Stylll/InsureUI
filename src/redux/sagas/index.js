@@ -6,6 +6,7 @@ import * as categorySaga from './category/category';
 function* rootSaga() {
   yield all([
     itemSaga.watchCreateItemSagaAsync(),
+    itemSaga.watchDeleteItemSagaAsync(),
     categorySaga.watchGetCategoryItemsSagaAsync(),
   ]);
 }
