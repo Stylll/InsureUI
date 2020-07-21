@@ -13,14 +13,6 @@
         margin: 40px;
         padding: 40px;
         background-color: $white;
-
-        .link {
-            font-weight: 100;
-            &:hover {
-                text-decoration: underline;
-                cursor: pointer;
-            }
-        }
         .error-text {
             color: $red;
         }

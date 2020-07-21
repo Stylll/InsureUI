@@ -58,6 +58,9 @@ exports[`Homepage Test should render properly 1`] = `
           </div>
         </div>
       </div>
+      <div
+        class="modal"
+      />
     </div>
   </div>
 </body>

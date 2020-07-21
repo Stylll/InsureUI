@@ -28,6 +28,12 @@ export const createItemApiResponse = {
   },
 };
 
+export const deleteItemApiResponse = {
+  data: {
+    data: {},
+  },
+};
+
 export const createItemRequestBody = {
   Name: 'Electronics',
   Value: 46.00,

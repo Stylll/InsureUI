@@ -53,4 +53,17 @@ describe('Homepage Test', () => {
     fireEvent.click(getByTestId('modal-close'));
     expect(queryByText('Add an Item')).not.toBeInTheDocument();
   });
+
+  it('should render and close delete item confirm prompt', () => {
+    const { getByTestId, getByText, queryByText } = render(
+        <Provider store={store}>
+            <Homepage />
+        </Provider>,
+    );
+    store.dispatch(getCategoryItemsSuccess(getCategoryItemsApiResponse.data.data));
+    fireEvent.click(getByTestId('homepage-delete-1'));
+    expect(getByText('Are sure you want to delete this item?')).toBeInTheDocument();
+    fireEvent.click(getByTestId('modal-close'));
+    expect(queryByText('Are sure you want to delete this item?')).not.toBeInTheDocument();
+  });
 });

@@ -6,6 +6,9 @@ import {
   createItem,
   createItemSuccess,
   createItemFailure,
+  deleteItem,
+  deleteItemSuccess,
+  deleteItemFailure,
 } from '../../actionCreators/itemActions/itemActions';
 import {
   getCategoryItems,
@@ -13,6 +16,10 @@ import {
 
 export function* watchCreateItemSagaAsync() {
   yield takeLatest(createItem().type, createItemSagaAsync);
+}
+
+export function* watchDeleteItemSagaAsync() {
+  yield takeLatest(deleteItem().type, deleteItemSagaAsync);
 }
 
 export function* createItemSagaAsync(action) {
@@ -25,6 +32,24 @@ export function* createItemSagaAsync(action) {
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
     yield put(createItemFailure({
+      errors: error.response.data && error.response.data.errors
+      && error.response.data.errors.length ? error.response.data.errors : {},
+      message: errorMessage,
+    }));
+    yield call(toastr.error, '', errorMessage || 'An error occurred');
+  }
+}
+
+export function* deleteItemSagaAsync(action) {
+  try {
+    yield call(ItemsApi.deleteItem, action.id);
+    yield put(deleteItemSuccess());
+    // eslint-disable-next-line no-undef
+    yield call(toastr.success, '', 'Item deleted successfully');
+    yield put(getCategoryItems());
+  } catch (error) {
+    const errorMessage = apiErrorHandler(error);
+    yield put(deleteItemFailure({
       errors: error.response.data && error.response.data.errors
       && error.response.data.errors.length ? error.response.data.errors : {},
       message: errorMessage,
