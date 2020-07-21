@@ -1,30 +1,26 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { toastr } from 'react-redux-toastr';
 import { apiErrorHandler } from '../../../helpers/utils';
-import ItemsApi from '../../../services/ItemsApi';
-import {
-  createItem,
-  createItemSuccess,
-  createItemFailure,
-} from '../../actionCreators/itemActions/itemActions';
+import CategoriesApi from '../../../services/CategoriesApi';
 import {
   getCategoryItems,
+  getCategoryItemsSuccess,
+  getCategoryItemsFailure,
 } from '../../actionCreators/categoryActions/categoryActions';
 
-export function* watchCreateItemSagaAsync() {
-  yield takeLatest(createItem().type, createItemSagaAsync);
+export function* watchGetCategoryItemsSagaAsync() {
+  yield takeLatest(getCategoryItems().type, getCategoryItemsSagaAsync);
 }
 
-export function* createItemSagaAsync(action) {
+export function* getCategoryItemsSagaAsync() {
   try {
-    const response = yield call(ItemsApi.createItem, action.requestData);
-    yield put(createItemSuccess(response.data.data));
+    const response = yield call(CategoriesApi.getCategoryItems);
+    yield put(getCategoryItemsSuccess(response.data.data));
     // eslint-disable-next-line no-undef
-    yield call(toastr.success, '', 'Item created successfully');
-    yield put(getCategoryItems());
+    yield call(toastr.success, '', 'Category Items retrieved successfully');
   } catch (error) {
     const errorMessage = apiErrorHandler(error);
-    yield put(createItemFailure({
+    yield put(getCategoryItemsFailure({
       errors: error.response.data && error.response.data.errors
       && error.response.data.errors.length ? error.response.data.errors : {},
       message: errorMessage,

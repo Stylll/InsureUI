@@ -51,3 +51,53 @@ export const serverError = {
     },
   },
 };
+
+export const serverErrorB = {
+  response: {
+    data: {
+      status: 400,
+      message: 'An error occurred',
+    },
+  },
+};
+
+export const getCategoryItemsApiResponse = {
+  data: {
+    data: {
+      categories: [
+        {
+          id: 1,
+          name: 'Electronics',
+          items: [
+            {
+              id: 1,
+              name: 'Playstation',
+              value: 999,
+              categoryId: 1,
+            },
+            {
+              id: 4,
+              name: 'Game Boy',
+              value: 430,
+              categoryId: 1,
+            },
+          ],
+          total: 2267.54,
+        },
+        {
+          id: 2,
+          name: 'Clothing',
+          items: [],
+          total: 0,
+        },
+        {
+          id: 3,
+          name: 'Kitchen',
+          items: [],
+          total: 0,
+        },
+      ],
+      total: 2267.54,
+    },
+  },
+};

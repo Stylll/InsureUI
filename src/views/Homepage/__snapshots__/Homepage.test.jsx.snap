@@ -32,140 +32,32 @@ exports[`Homepage Test should render properly 1`] = `
         </div>
         <div
           class="modal"
-        >
+        />
+      </div>
+      <div
+        class="categories-container"
+      >
+        <div>
+          <h3
+            class="title"
+          >
+            List Of Items
+          </h3>
           <div
-            class="modal-container"
+            class="loader-container "
           >
             <div
-              class="close-btn"
-              data-testid="modal-close"
+              class="loader"
+              style="width: 20px; height: 20px;"
+            />
+            <span
+              class="message"
             >
-              ×
-            </div>
-            <div
-              class="content "
-            >
-              <div
-                class="create-item-container"
-              >
-                <div
-                  class="form-container"
-                >
-                  <div
-                    class="item-container"
-                  >
-                    <div>
-                      <p>
-                        Add an Item
-                      </p>
-                      <span
-                        class="error-text"
-                      />
-                      <div
-                        class="form-input"
-                      >
-                        <div
-                          class="title"
-                        >
-                          Enter the item name
-                        </div>
-                        <input
-                          class="text-input"
-                          data-testid="createitem-name"
-                          id=""
-                          name="Name"
-                          placeholder="Playstation"
-                          type="text"
-                          value=""
-                        />
-                        <span
-                          class="info"
-                        />
-                        
-                      </div>
-                      <div
-                        class="form-input"
-                      >
-                        <div
-                          class="title"
-                        >
-                          Enter the value of the item
-                        </div>
-                        <input
-                          class="text-input"
-                          data-testid="createitem-value"
-                          id=""
-                          name="Value"
-                          placeholder="5000"
-                          type="text"
-                          value=""
-                        />
-                        <span
-                          class="info"
-                        />
-                        
-                      </div>
-                      <div
-                        class="drop-down"
-                      >
-                        <select
-                          class="select"
-                          data-testid="createitem-category"
-                          name="CategoryId"
-                        >
-                          <option
-                            value=""
-                          >
-                            select item category
-                          </option>
-                          <option
-                            value="1"
-                          >
-                            Electronics
-                          </option>
-                          <option
-                            value="2"
-                          >
-                            Clothing
-                          </option>
-                          <option
-                            value="3"
-                          >
-                            Kitchen
-                          </option>
-                        </select>
-                        <span
-                          class="chevy"
-                        >
-                          ∨
-                        </span>
-                        <span
-                          class="info"
-                        />
-                        
-                      </div>
-                      <br />
-                      <div
-                        class="btn-button"
-                      >
-                        <button
-                          class="button "
-                          data-testid="createitem-create"
-                          type="submit"
-                        >
-                          Create
-                        </button>
-                      </div>
-                    </div>
-                    <br />
-                  </div>
-                </div>
-              </div>
-            </div>
+              fetching category items records, hang tight...
+            </span>
           </div>
         </div>
       </div>
-      Homepage
     </div>
   </div>
 </body>
