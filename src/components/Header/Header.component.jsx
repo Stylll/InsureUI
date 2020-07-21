@@ -4,7 +4,7 @@ import CreateItem from '../CreateItem/CreateItem.component';
 import './Header.styles.scss';
 
 const Header = () => {
-  const [showCreateItemModal, setShowCreateItemModal] = useState(true);
+  const [showCreateItemModal, setShowCreateItemModal] = useState(false);
 
   const showCreateItem = () => {
     setShowCreateItemModal(true);
