@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown Component should render properly 1`] = `
+<body>
+  <div>
+    <div
+      class="drop-down"
+    >
+      <select
+        class="select"
+        data-testid="dropdown"
+        name="category"
+      >
+        <option
+          value=""
+        />
+        <option
+          value="1"
+        >
+          Electronics
+        </option>
+        <option
+          value="2"
+        >
+          Automobile
+        </option>
+        <option
+          value="3"
+        >
+          Kitchen
+        </option>
+      </select>
+      <span
+        class="chevy"
+      >
+        ∨
+      </span>
+      <span
+        class="info"
+      />
+      
+    </div>
+  </div>
+</body>
+`;
